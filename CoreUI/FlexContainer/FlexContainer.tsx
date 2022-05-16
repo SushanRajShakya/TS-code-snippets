@@ -27,6 +27,7 @@ interface Props {
   ref?: Ref<HTMLDivElement>
   onClick?: FunctionWithNoParam
   onFocus?: FunctionWithNoParam
+  reverse?: boolean
 }
 
 export const FlexContainer: FC<Props> =  forwardRef((props, ref) => {
@@ -40,10 +41,11 @@ export const FlexContainer: FC<Props> =  forwardRef((props, ref) => {
     children,
     onClick,
     onFocus,
+    reverse = false
   } = props
   const classes = classNames(
     styles.flexContainer,
-    styles[direction],
+    reverse ? styles[`${direction}Reverse`] : styles[direction],
     justify && styles[justify],
     fill && styles.fill,
     {

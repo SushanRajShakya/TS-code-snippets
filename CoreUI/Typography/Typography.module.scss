@@ -1,9 +1,10 @@
 @import '../../Styles/variables';
 
-.p, .h1, .h2, .h3, .h4, .h5, .h6, .span {
+.p, .h1, .h2, .h3, .h4, .h5, .h6, .span, a {
   font-family: $font-mulish;
   font-weight: 400;
   white-space: pre-line;
+  margin: 5px 10px;
   &.bold {
     font-weight: 700;
   }

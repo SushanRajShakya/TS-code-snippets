@@ -4,10 +4,9 @@ import classNames from 'classnames'
 
 import { FlexContainer, Indicator } from 'Components'
 
-import { landingPage } from 'Utils/mockData'
-import { animateContainerVariants } from 'Utils/constants'
-import { AnimateContainerVariant } from 'Utils/enum'
 import { FunctionWithParam } from 'Utils/Types'
+import { AnimateContainerVariant } from 'Utils/enum'
+import { animateContainerVariants } from 'Utils/constants'
 
 import styles from './Carousel.module.scss'
 
@@ -35,16 +34,16 @@ export const Carousel:FC<CarouselProps> = ({ children, overflow = 'Hidden', tota
       keyIndexRef.current = action
     }else{
       const val = action === 'NEXT'
-        ? keyIndexRef.current === (landingPage.banners.length - 1)
+        ? keyIndexRef.current === (totalIndex - 1)
           ? 0
           : keyIndexRef.current + 1
         : keyIndexRef.current === 0
-          ? (landingPage.banners.length - 1)
+          ? (totalIndex - 1)
           : keyIndexRef.current - 1
       setKeyIndex(val)
       keyIndexRef.current = val
     }
-  }, [])
+  }, [totalIndex])
 
   useEffect(() => {
     const autoInt = setInterval(() => {
@@ -73,8 +72,8 @@ export const Carousel:FC<CarouselProps> = ({ children, overflow = 'Hidden', tota
       {hasIndicator
         ? <Indicator total={totalIndex} handleIndicatorChange={num => handleIndexChange(num)} active={keyIndex} />
         : null }
-      <FlexContainer justify='center' onClick={() => handleIndexChange('NEXT')} classList={classNames(styles.carouselAction, styles.carouselNext)}>{'>'}</FlexContainer>
-      <FlexContainer justify='center' onClick={() => handleIndexChange('PREVIOUS')} classList={classNames(styles.carouselAction, styles.carouselPrevious)}>{'<'}</FlexContainer>
+      <FlexContainer justify="center" onClick={() => handleIndexChange('NEXT')} classList={classNames(styles.carouselAction, styles.carouselNext)}>{'>'}</FlexContainer>
+      <FlexContainer justify="center" onClick={() => handleIndexChange('PREVIOUS')} classList={classNames(styles.carouselAction, styles.carouselPrevious)}>{'<'}</FlexContainer>
     </div>
   )
 }

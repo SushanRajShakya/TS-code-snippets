@@ -1,6 +1,4 @@
 /** A high-level generic object. */
-import { EventType } from '../enum'
-
 type GenericObject<T = unknown> = { [key: string]: T }
 
 /** A high-level error object. */
@@ -26,28 +24,7 @@ type FunctionWithParamAndReturn<P, R> = (p: P) => R
 interface ApiResponseType<T> {
     data: T,
     message: string,
-    result: boolean
-}
-
-interface ApiErrorObject {
-    message: string,
-    result: boolean,
-    status: number,
-}
-
-interface QuestionSetType {
-    userType: string,
-    questionField: string,
-    question: string,
-    isRequired: boolean,
-    questionType: string,
-    options: AnswerSetType[],
-    hasOthers: boolean
-}
-
-interface AnswerSetType {
-    displayOption: string,
-    value: string,
+    success: boolean
 }
 
 interface FieldTypeBanner {
@@ -60,32 +37,6 @@ interface FieldTypeBanner {
     }[]
 }
 
-interface FieldTypeEvent {
-    title: string,
-    eventType: EventType,
-    date: string,
-    rating: number,
-    enrolledUsers: number,
-    imageUrl: string,
-    host: string
-}
-
-interface FieldTypeHost {
-    name: string,
-    position: string,
-    company: string,
-    description: string,
-    imageUrl: string,
-}
-
-interface FieldTypeReview {
-    name: string,
-    position: string,
-    description: string,
-    rating: number,
-    imageUrl: string
-}
-
 export type {
   GenericObject,
   ErrorObject,
@@ -94,12 +45,6 @@ export type {
   FunctionWithParamAndReturn,
   FunctionWithNoParamButReturn,
   Nullable,
-  QuestionSetType,
-  AnswerSetType,
-  FieldTypeBanner,
-  FieldTypeEvent,
-  FieldTypeHost,
-  FieldTypeReview,
   ApiResponseType,
-  ApiErrorObject,
+  FieldTypeBanner
 }

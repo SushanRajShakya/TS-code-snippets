@@ -6,7 +6,7 @@ import styles from './Loading.module.scss'
 
 export const ScreenLoading:FC = () => {
   return(
-    <FlexContainer justify='center' classList={styles.loaderWrapper}>
+    <FlexContainer justify="center" classList={styles.loaderWrapper}>
       <div className={styles.loader} />
     </FlexContainer>
   )

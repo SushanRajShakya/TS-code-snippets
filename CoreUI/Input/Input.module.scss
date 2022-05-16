@@ -1,13 +1,28 @@
 @import 'src/Components/Styles/variables';
 
+.labelText{
+  margin-bottom: 5px;
+  padding-left: $input-padding-x-sm;
+  font-size: $input-font-size-sm;
+  color: $gray-800;
+  &::after{
+    content: ' :';
+  }
+  &.labelError{
+    color: $red;
+  }
+}
 .inputWrapper{
   background: $white;
   box-shadow: 0 8px 25px 0 #0000001A;
   position: relative;
   width: 100%;
   overflow: hidden;
+  height: $input-height-sm;
+  border-radius: $input-border-radius-sm;
   &.textAreaWrapper{
     padding: 20px 0;
+    height: 150px;
     textarea{
       resize: none;
       outline: none;
@@ -22,68 +37,18 @@
   &:focus-within{
     border: 1px solid black;
   }
-  &.small{
-    height: $input-height-sm;
-    &.textAreaWrapper{
-      height: 150px;
-    }
-    border-radius: $input-border-radius-sm;
-    .inputFieldWrapper{
-      .inputField{
-        padding: 0 $input-padding-x-sm;
-        font-size: $input-font-size-sm;
-        line-height: $input-line-height-sm;
-      }
-      .eyeWrapper{
-        font-size: $input-font-size-sm;
-      }
-    }
-  }
 
-  &.medium{
-    height: $input-height;
-    &.textAreaWrapper{
-      height: 175px;
-    }
-    border-radius: $input-border-radius;
-    .inputFieldWrapper{
-      .inputField{
-        padding: 0 $input-padding-x;
-        font-size: $input-font-size;
-        line-height: $input-line-height;
-      }
-      .eyeWrapper{
-        font-size: $input-font-size;
-      }
-    }
-  }
-
-  &.large{
-    height: $input-height-lg;
-    &.textAreaWrapper{
-      height: 200px;
-    }
-    border-radius: $input-border-radius-lg;
-    .inputFieldWrapper{
-      .inputField{
-        padding: 0 $input-padding-x-lg;
-        font-size: $input-font-size-lg;
-        line-height: $input-line-height-lg;
-      }
-      .eyeWrapper{
-        font-size: $input-font-size-lg;
-      }
-    }
-  }
   .inputFieldWrapper{
     position: relative;
     height: 100%;
     width: 100%;
     .inputField{
+      padding: 0 $input-padding-x-sm;
+      font-size: $input-font-size-sm;
+      line-height: $input-line-height-sm;
       border: none;
       color: $input-plaintext-color;
       font-weight: 500;
-      padding: 0;
       height: 100%;
       width: 90%;
       &.hasNoIcon{
@@ -119,7 +84,9 @@
         color: $input-plaintext-color;
         font-weight: 500;
         width: 10%;
-        i{
+        svg{
+          width: 80%;
+          height: 80%;
           cursor: pointer;
           &:hover{
             color: darken($input-plaintext-color, 10);
@@ -131,12 +98,15 @@
   ::placeholder{
     color: $input-placeholder-color;
   }
-  .inputError{
+  &.inputError{
+    border: 1px solid $red;
+  }
+  .errorText{
     position: absolute;
     color: red;
-    bottom: 8px;
+    bottom: 3px;
     left: 0;
-    padding: 0 1.5rem;
+    padding: 0 $input-padding-x-sm;
     font-size: 11px;
     font-family: $font-roboto;
     word-break: break-word;

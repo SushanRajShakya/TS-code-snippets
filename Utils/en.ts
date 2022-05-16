@@ -1,4 +1,6 @@
-import { AuthPagesLabels, BloodGroup } from './enum'
+import { AuthPagesLabels } from './enum'
+import { getBannerUrl } from './UtilFunctions'
+import { FieldTypeBanner } from './Types'
 
 const notFound = {
   title: 'ERROR 404!',
@@ -15,61 +17,60 @@ const notFound = {
 }
 
 const navigationDisplayNames = {
-  home: 'Home'
+  DASHBOARD: 'Dashboard',
+  VEHICLE: 'Vehicle',
+  PACKAGE: 'Package',
+  TIME_SCHEDULE: 'Time & Schedule',
+  BOOKING: 'Booking',
+  COMPANY: 'Company'
 }
 
 const labels = {
-  [AuthPagesLabels.EMAIL]:{
+  [AuthPagesLabels.EMAIL]: {
     topic: 'Trouble Logging In?',
-    description: 'Enter your email, phone, or username and we\'ll send you a link to get back into your account.',
+    description: 'Enter your email and we\'ll send you an otp to get back into your account.',
     pageTitle: 'TBD | Trouble Login | Email'
   },
-  [AuthPagesLabels.OTP]:{
+  [AuthPagesLabels.OTP]: {
     topic: 'OTP Code',
     description: 'Enter the OTP code sent to ',
     pageTitle: 'TBD | Trouble Login | OTP',
   },
-  [AuthPagesLabels.PASSWORD]:{
+  [AuthPagesLabels.PASSWORD]: {
     topic: 'Trouble Logging In?',
     description: 'Enter new password for you account.',
     pageTitle: 'TBD | Trouble Login | Password'
   },
-  [AuthPagesLabels.LOGIN]:{
+  [AuthPagesLabels.LOGIN]: {
     topic: 'Log In',
-    description: 'For the purpose of industry regulation, your details are required.',
+    description: 'For the purpose of company regulation, your details are required.',
     pageTitle: 'TBD | Log In'
   },
-  [AuthPagesLabels.USERTYPE]:{
+  [AuthPagesLabels.USERTYPE]: {
     topic: 'Register',
     description: 'Sign up as a',
     pageTitle: 'TBD | Register'
   },
-  [AuthPagesLabels.SELECT_USER_TYPE]:{
+  [AuthPagesLabels.SELECT_USER_TYPE]: {
     topic: 'Select User Type',
     description: 'Sign up as a',
     pageTitle: 'TBD | Register'
   },
-  [AuthPagesLabels.REGISTER]:{
+  [AuthPagesLabels.REGISTER]: {
     topic: 'Register',
-    description: 'For the purpose of industry regulation, your details are required.',
+    description: 'For the purpose of company regulation, your details are required.',
     pageTitle: 'TBD | Register'
   },
-  [AuthPagesLabels.VERIFY_USER]:{
+  [AuthPagesLabels.VERIFY_USER]: {
     topic: 'Verifying User',
     description: 'To continue viewing secured pages, \n Please enter the OTP Code sent to ',
     pageTitle: 'TBD | Verifying User'
   },
-  [AuthPagesLabels.CONFIRM_USER]:{
+  [AuthPagesLabels.CONFIRM_USER]: {
     topic: 'Confirm User',
     description: 'Please enter your email address to confirm.',
     pageTitle: 'TBD | Confirm User'
   },
-}
-
-const welcomeScreenLabels = {
-  title: 'You have successfully registered to CADUCEUS',
-  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-  knowMore: 'We’d like to know more about you'
 }
 
 const accountSettingsLabels = {
@@ -78,11 +79,6 @@ const accountSettingsLabels = {
     description: 'If you delete your account, your personal information will be wiped from Coursera\'s servers, all of your course activity will be anonymized and any certificates earned will be deleted. This action cannot be undone! Cancel any active subscriptions before you delete your account.',
     buttonLabel: 'Delete Account',
   },
-  deactivateAccount: {
-    title: 'Deactivate Account',
-    description: 'If you delete your account, your personal information will be wiped from Coursera\'s servers, all of your course activity will be anonymized and any certificates earned will be deleted. This action cannot be undone! Cancel any active subscriptions before you delete your account.',
-    buttonLabel: 'Deactivate Account',
-  },
   hideAccount: {
     title: 'Hide my Profile',
     description: 'If you delete your account, your personal information will be wiped from Coursera\'s servers, all of your course activity will be anonymized and any certificates earned will be deleted. This action cannot be undone! Cancel any active subscriptions before you delete your account.',
@@ -90,204 +86,63 @@ const accountSettingsLabels = {
   }
 }
 
-const bloodGroupList = [
+const BANNER_IMAGES = ['learnToDriveOne.jpg', 'learnToDriveTwo.png', 'learnToDriveThree.jpg', 'learnToDriveFour.jpg']
+
+const homepageBannerList:FieldTypeBanner[] = [
   {
-    displayName: 'A+ (A Positive)',
-    value: BloodGroup.A_POSITIVE
+    title: 'Learn to Drive with us',
+    description: 'Welcome to our LTD family, we provide a platform to enjoy services on learning to drive.',
+    imageUrl: getBannerUrl(BANNER_IMAGES[0])
   },
   {
-    displayName: 'A- (A Negative)',
-    value: BloodGroup.A_NEGATIVE
+    title: ' Online learner & trainer platform',
+    description: 'LTD provides a platform where the learner can connect with any member institutes and vice versa.',
+    imageUrl: getBannerUrl(BANNER_IMAGES[1]),
   },
   {
-    displayName: 'B+ (B Positive)',
-    value: BloodGroup.B_POSITIVE
+    title: 'Home of the best institutes',
+    description: 'LTD lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum',
+    imageUrl: getBannerUrl(BANNER_IMAGES[2]),
   },
   {
-    displayName: 'B+ (B Negative)',
-    value: BloodGroup.B_NEGATIVE
-  },
-  {
-    displayName: 'O+ (O Positive)',
-    value: BloodGroup.O_POSITIVE
-  },
-  {
-    displayName: 'O+ (O Negative)',
-    value: BloodGroup.O_NEGATIVE
-  },
-  {
-    displayName: 'AB+ (AB Positive)',
-    value: BloodGroup.AB_POSITIVE
-  },
-  {
-    displayName: 'AB+ (AB Negative)',
-    value: BloodGroup.AB_NEGATIVE
+    title: 'Your community, your online trainer',
+    description: 'LTD lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum',
+    imageUrl: getBannerUrl(BANNER_IMAGES[3]),
   },
 ]
 
-const educationDegreeList = [
-  {
-    displayName: 'SLC / SEE',
-    value: 'SLC / SEE'
-  },
-  {
-    displayName: '10 + 2',
-    value: '10 + 2'
-  },
-  {
-    displayName: 'Diploma',
-    value: 'Diploma'
-  },
-  {
-    displayName: 'Bachelor of Medicine, Bachelor of Surgery (MBBS)',
-    value: 'MBBS'
-  },
-  {
-    displayName: 'Bachelor of Dental Surgery (BDS)',
-    value: 'BDS'
-  },
-  {
-    displayName: 'Bachelor of Ayurvedic Medicine and Surgery (BAMS)',
-    value: 'BAMS'
-  },
-  {
-    displayName: 'Bachelor of Unani Medicine and Surgery (BUMS)',
-    value: 'BUMS'
-  },
-  {
-    displayName: 'Bachelor of Homeopathy Medicine and Surgery (BHMS)',
-    value: 'BHMS'
-  },
-  {
-    displayName: 'Bachelor of Yoga and Naturopathy Sciences (BYNS)',
-    value: 'BYNS'
-  },
-  {
-    displayName: 'Bachelor of Veterinary Sciences and Animal Husbandry (B.V.Sc & AH)',
-    value: 'B.V.Sc & AH'
-  },
-  {
-    displayName: 'Masters - Doctor of Medicine (MD)',
-    value: 'MD'
-  },
-  {
-    displayName: 'Masters - Master of Surgery (MS)',
-    value: 'MS'
-  },
-  {
-    displayName: 'Masters - Diplomate of National Board (DNB)',
-    value: 'DNB'
-  },
-  {
-    displayName: 'Super Speciality - Doctorate of Medicine (D.M.)',
-    value: 'D.M.'
-  },
-  {
-    displayName: 'Super Speciality - Master of Chirurgiae (M.Ch)',
-    value: 'M.Ch'
-  }
-]
-
-const educationSpecialityList = {
-  'MD' : [
-    'Anaesthesiology',
-    'Pharmacology',
-    'Biochemistry',
-    'Physical Medicine and Rehabilitation',
-    'Community Health',
-    'Physiology',
-    'Dermatology',
-    'Preventive and Social Medicine',
-    'Family Medicine',
-    'Psychiatry',
-    'Forensic Medicine',
-    'Radio-Diagnosis',
-    'General Medicine',
-    'Radio-Therapy',
-    'Microbiology',
-    'Tuberculosis and Respiratory diseases',
-    'Paediatrics',
-    'Emergency and Critical care',
-    'Palliative Medicine',
-    'Nuclear Medicine',
-    'Pathology',
-    'Transfusion Medicine',
-    'Skin and Venereal diseases',
-    'Tropical Medicine',
-  ],
-  'MS' :[
-    'Ear, Nose and Throat',
-    'General Surgery',
-    'Ophthalmology',
-    'Orthopaedics',
-    'Obstetrics and Gynaecology',
-    'Dermatology, Venerology and Leprosy',
-  ],
-  'DNB' : [
-    'Anaesthesiology',
-    'Orthopaedic Surgery',
-    'Anatomy',
-    'Oto-Rhino Laryngology',
-    'Biochemistry',
-    'Paediatrics',
-    'Dermatology',
-    'Pathology',
-    'Emergency Medicine',
-    'Pharmacology',
-    'Family Medicine',
-    'Physical Medicine and Rehabilitation',
-    'Field Epidemiology',
-    'Physiology',
-    'Forensic Medicine',
-    'Immunohematology and transfusion medicine',
-    'General Medicine',
-    'Maternal and Child Health',
-    'General Surgery',
-    'Microbiology',
-    'Health Administration',
-    'Nuclear Medicine',
-    'Ophthalmology',
-    'Obstetric and Gynecology',
-    'Psychiatry',
-    'Respiratory diseases',
-    'Radio-Diagnosis',
-    'Rural Surgery',
-    'Radio-Therapy',
-    'Social and Preventive Medicine',
-  ],
-  'D.M.': [
-    'Psychiatry',
-    'Cardiology',
-    'Cardiac-Anaesthesiology',
-    'Pulmonary and Sleep disorders',
-    'Cardiology',
-    'Obstetrics and Gynecology',
-    'Haematology',
-    'Nuclear Medicine',
-    'Cardiac-Radiology',
-    'Anaesthesiology, Pain Medicine and Critical Care',
-    'Paediatrics',
-    'Endocrinology',
-    'Nephrology',
-    'Gastroenterology',
-    'Neuro-Anaesthesiology and Critical Care',
-    'Medicine and Microbiology',
-    'Neurology',
-    'Onco-Anesthesiology and Palliative Medicine',
-  ],
-  'M.Ch': [
-    'Surgery',
-    'Cardiothoracic and Vascular Surgery',
-    'Gastrointestinal Surgery',
-    'Obstetrics and Gynaecology',
-    'ENT',
-    'Neuro Surgery',
-    'Pediatric Surgery',
-    'Plastic and Reconstructive Surgery',
-    'Surgical Oncology',
-    'Surgery Trauma Centre',
-    'Urology',
-  ]
+const imageUrlForStaticData = {
+  about: `http://localhost:${process.env.REACT_APP_PORT}/fallbackFiles/about.png`,
+  aimObjective: `http://localhost:${process.env.REACT_APP_PORT}/fallbackFiles/aimObjective.png`,
+  company: `http://localhost:${process.env.REACT_APP_PORT}/fallbackFiles/drivingSchool.jpg`,
+  customer: `http://localhost:${process.env.REACT_APP_PORT}/fallbackFiles/learner.jpg`,
 }
 
-export { navigationDisplayNames, notFound, labels, welcomeScreenLabels, accountSettingsLabels, bloodGroupList, educationDegreeList, educationSpecialityList }
+const homepageStaticData = {
+  company: {
+    title: 'Be our instructor',
+    description: 'You can register you self as a company and add you packages to get customers. lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum.  lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum.',
+    imageUrl: imageUrlForStaticData.company,
+    dataLabel: 'Total companies: '
+  },
+  customer: {
+    title: 'Be our learner',
+    description: 'You can register you self as a learner and get yourself a package that suits you best to get most of it. lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum.  lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum.',
+    imageUrl: imageUrlForStaticData.customer,
+    dataLabel: 'Total learners: '
+  },
+  aimObjective: {
+    title: 'Aim & Objectives',
+    description: 'The platform was built to bring learner and training institute together in easier way possible. lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum.  lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum.',
+    imageUrl: imageUrlForStaticData.aimObjective,
+    dataLabel: 'Total Packages: '
+  },
+  about: {
+    title: 'About LTD',
+    description: 'The company was formed by Prazwal Malakar having a wider vision. lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum.  lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum lorem Ipsum.',
+    imageUrl: imageUrlForStaticData.about,
+    dataLabel: 'Total team: '
+  }
+}
+
+export { navigationDisplayNames, notFound, labels, accountSettingsLabels, homepageBannerList, homepageStaticData }

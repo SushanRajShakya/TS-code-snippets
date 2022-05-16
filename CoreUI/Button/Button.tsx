@@ -5,7 +5,7 @@ import { Spinner } from 'Components'
 import styles from './Button.module.scss'
 
 type Props = ComponentPropsWithoutRef<'button'> & {
-  variant?: 'primary' | 'secondary' | 'text' | 'navGray' | 'navBlue'
+  variant?: 'primary' | 'secondary' | 'text'
   index?: number
   loading?: boolean
 }

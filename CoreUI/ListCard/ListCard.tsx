@@ -1,30 +1,29 @@
 import { FC } from 'react'
-import { useRouter } from 'next/router'
-import Image from 'next/image'
-import { FlexContainer, SvgIcons, Typography } from 'Components'
-import { SvgIconName } from 'Utils/enum'
+import { useNavigate } from 'react-router-dom'
+import { FlexContainer } from 'Components'
+import { FallBackImage } from 'Utils/enum'
 import styles from './ListCard.module.scss'
+import { getCompleteImageUrl } from '../../../Utils/UtilFunctions'
+import { fallBackImages } from '../../../Utils/constants'
 
 interface ListCardProps {
-    name: string,
-    address: string,
     redirection: string,
-    imageUrl: string
+    imageUrl: string | undefined,
+    fallBackImage: FallBackImage
 }
 
-export const ListCard:FC<ListCardProps> = ({ redirection, address, name, imageUrl }) => {
+export const ListCard:FC<ListCardProps> = ({ redirection, children, fallBackImage, imageUrl }) => {
 
-  const router = useRouter()
+  const navigate = useNavigate()
 
   return(
-    <div className={styles.listCardWrapper} onClick={async () => await router.replace(redirection)}>
-      <FlexContainer justify='center' classList={styles.listCardImage}>
-        <Image src={imageUrl} alt='fallback' layout='fixed' height={400} width={650}  />
+    <div className={styles.listCardWrapper} onClick={async () => await navigate(redirection)}>
+      <FlexContainer justify="center" classList={styles.listCardImage}>
+        <img src={getCompleteImageUrl(imageUrl) || fallBackImages[fallBackImage]} alt="fallback"  />
       </FlexContainer>
       <div className={styles.listCardBlur} />
-      <FlexContainer justify='start' align='start' direction='col' classList={styles.listCardContentWrapper}>
-        <Typography variant='h5' weight='bold' classList={styles.listCardTitle}>{name}</Typography>
-        <Typography variant='p'><SvgIcons iconName={SvgIconName.USER}/> {address}</Typography>
+      <FlexContainer justify="start" align="start" direction="col" classList={styles.listCardContentWrapper}>
+        {children}
       </FlexContainer>
     </div>
   )

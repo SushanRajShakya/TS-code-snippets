@@ -30,20 +30,37 @@ export enum LocalStorageKeys {
     OTP_ACTIVATE_TIME = 'oat',
 }
 
-export enum UserType {
-    ADMIN = 'ADMIN',
-    DOCTOR = 'DOCTOR',
-    PATIENT = 'PATIENT',
-    BLOOD_DONOR = 'BLOOD_DONOR'
+export enum Category {
+    COMPANY='COMPANY',
+    CUSTOMER='CUSTOMER'
+}
+
+export enum UserAccountStatus {
+    ACTIVE='ACTIVE',
+    DE_ACTIVE='DE_ACTIVE'
+}
+
+export enum RequestStatus {
+    PENDING = 'pending',
+    ACCEPTED = 'accepted',
+    DECLINED = 'declined',
+}
+
+export enum ClassNameScrollBar {
+    Y = 'hasYScrollBar',
+    X = 'hasXScrollBar'
 }
 
 export enum SvgIconName {
     ANSWER_CARD_ICON = 'answerCardIcon',
     ARROW_RIGHT = 'arrowRight',
     ANSWER_SELECTED = 'answerSelected',
+    COPY='copy',
     SEARCH = 'search',
     ANGLE_DOWN = 'angleDown',
     BELL_WITH_DOT = 'bellWithDot',
+    EYE= 'eye',
+    EYE_SLASH= 'eyeSlash',
     STAR_GOLD = 'starGold',
     USER = 'user',
     CALENDAR = 'calendar',
@@ -60,7 +77,26 @@ export enum SvgIconName {
     BLOOD_DROP = 'bloodDrop',
     AMBULANCE = 'ambulance',
     DOCTOR = 'doctor',
-    TICK_MARK = 'tickMark'
+    TICK_MARK = 'tickMark',
+    DASH_MARK = 'dashMark',
+    CROSS_MARK = 'crossMark',
+    STUDENT = 'student',
+    SCHOOL = 'school'
+}
+
+export enum UserOperations {
+    REGISTER='REGISTER',
+    FORGOT_PASSWORD='FORGOT_PASSWORD',
+    RESET_PASSWORD='RESET_PASSWORD',
+    DEACTIVATION='DEACTIVATION',
+    REACTIVATION='REACTIVATION',
+}
+
+export enum FallBackImage {
+    PACKAGE= 'PACKAGE',
+    VEHICLE= 'VEHICLE',
+    COMPANY= 'COMPANY',
+    USER= 'USER'
 }
 
 export enum AnimateContainerVariant {
@@ -69,60 +105,8 @@ export enum AnimateContainerVariant {
     EXIT = 'exit'
 }
 
-export enum EventType{
-    WEBINAR = 'webinar',
-    ZONE = 'zone',
-    DEBATE = 'debate',
-    COURSES = 'courses',
-    WORKSHOP = 'workshop'
-}
-
-export enum UserRequestTabName {
-    BLOOD_DONOR = 'bloodDonor',
-    YOURSELF = 'yourself',
-    DOCTOR = 'doctor',
-}
-
-export enum RequestStatus {
-    PENDING = 'pending',
-    ACCEPTED = 'accepted',
-    DECLINED = 'declined',
-}
-
-export enum ProfileMainNavTabValue {
-    DETAIL = 'details',
-    REQUEST = 'requests'
-}
-
-export enum ProfileEditNavTabValue {
-    PROFILE = 'edit',
-    ACCOUNT_SETTINGS = 'account-settings'
-}
-
-export enum ProfileEditTags {
-    BASIC_INFO = 'basicInfo',
-    WORK_EXPERIENCE = 'workExperience',
-    EDUCATION = 'education',
-    DEPARTMENT = 'department'
-}
-
-export enum ClassNameScrollBar {
-    Y = 'hasYScrollBar',
-    X = 'hasXScrollBar'
-}
-
-export enum EventCategory {
-    BLOOD = 'blood',
-    MEDICAL = 'medical'
-}
-
-export enum BloodGroup {
-    A_POSITIVE = 'A+',
-    A_NEGATIVE = 'A-',
-    B_POSITIVE = 'B+',
-    B_NEGATIVE = 'B-',
-    O_POSITIVE = 'O+',
-    O_NEGATIVE = 'O-',
-    AB_POSITIVE = 'AB+',
-    AB_NEGATIVE = 'AB-',
+export enum UserGender {
+    MALE='MALE',
+    FEMALE='FEMALE',
+    OTHERS='OTHERS',
 }

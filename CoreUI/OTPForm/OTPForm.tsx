@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, FC, RefObject, createRef, useEffect, useState } from 'react'
+import { ChangeEvent, ComponentPropsWithoutRef, FC, RefObject, createRef, useEffect, useState } from 'react'
 import classNames from 'classnames'
 
 import { FlexContainer, Typography } from 'Components'
@@ -10,7 +10,7 @@ import {
   GenericObject,
   Nullable
 } from 'Utils/Types'
-import { LocalStorageKeys } from 'Utils/enum'
+import { LocalStorageKeys } from 'Utils/localStorage'
 
 import styles  from './OTPForm.module.scss'
 
@@ -25,7 +25,7 @@ interface OTPFormProps {
 export const OTPForm:FC<ComponentPropsWithoutRef<'input'> & OTPFormProps> = ({ clearError, otpLength, otpResendFunction, readOnly, error, handleSubmit, ...props }) => {
 
   const arr = [...new Array(otpLength)]
-  let refs:GenericObject<RefObject<HTMLInputElement>> = {}
+  const refs:GenericObject<RefObject<HTMLInputElement>> = {}
   arr.map((_e, i) => (refs[`input${i + 1}`] = createRef()))
 
   const [otpArray, setOtpArray] = useState(arr)
@@ -50,7 +50,7 @@ export const OTPForm:FC<ComponentPropsWithoutRef<'input'> & OTPFormProps> = ({ c
   }
 
   useEffect(()=> {
-    const getDataFromLocal = async () => {
+    (async () => {
       try {
         const localData = await localStorage.getItem(LocalStorageKeys.OTP_ACTIVATE_TIME)
         if(localData && JSON.parse(localData)){
@@ -75,15 +75,14 @@ export const OTPForm:FC<ComponentPropsWithoutRef<'input'> & OTPFormProps> = ({ c
       }catch (err){
         console.error(err)
       }
-    }
-    getDataFromLocal()
+    })()
 
   } ,[])
 
-  function handleChange(e, key) {
+  const handleChange = (e:ChangeEvent<HTMLInputElement>, key: number) => {
     const value = e.target.value
     const checkNum = new RegExp('^[0-9]$')
-    let newOtpArray = [...otpArray]
+    const newOtpArray = [...otpArray]
     newOtpArray[key - 1] = checkNum.test(value) ? value : ''
     setOtpArray(newOtpArray)
     const valueToUplift = newOtpArray.join('')
@@ -116,13 +115,13 @@ export const OTPForm:FC<ComponentPropsWithoutRef<'input'> & OTPFormProps> = ({ c
     setIsSendingOtp(true)
     const res = await otpResendFunction()
     if(res === 'SUCCESS') {
-      setIsSendingOtp(false)
       await disableOtpResendText()
     }
+    setIsSendingOtp(false)
   }
 
   return (
-    <FlexContainer direction='col' classList={styles.otpWrapper}>
+    <FlexContainer direction="col" classList={styles.otpWrapper}>
       <form onSubmit={e => e.preventDefault()} className={styles.otpForm} >
         {arr.map((_e, i) => (
           <input
@@ -132,15 +131,15 @@ export const OTPForm:FC<ComponentPropsWithoutRef<'input'> & OTPFormProps> = ({ c
             ref={refs[`input${i+1}`]}
             value={otpArray[i] || ''}
             onChange={e => handleChange(e, i + 1)}
-            type='text'
+            type="text"
             maxLength={1}
-            autoComplete='off'
+            autoComplete="off"
             name={props.name}
             readOnly={readOnly}
           />
         ))}
       </form>
-      <Typography variant='p' classList={styles.otpResendLabel}>Don&apos;t have code?&nbsp;
+      <Typography variant="p" classList={styles.otpResendLabel}>Don&apos;t have code?&nbsp;
         <span
           className={classNames(styles.otpResendAction, disableOtpResend ? styles.otpResendDisabled : '')}
           onClick={!disableOtpResend ? handleOtpResend : () => null}

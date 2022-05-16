@@ -1,27 +1,70 @@
-import { BloodGroup, UserType } from '../enum'
+import { Category, SvgIconName, UserAccountStatus, UserGender, UserOperations } from '../enum'
+import { Nullable } from './main'
 
 interface FieldTypeLogin {
-    emailId: string,
+    email: string,
     password: string,
 }
 
 interface FieldTypeResendOtpCode {
-    emailId: string,
+    email: string,
+}
+
+
+interface FieldTypeUserProfileCommon {
+    address: string,
+    phone: Nullable<number>,
+}
+
+interface FieldTypeUserProfileCustomer {
+    gender?: UserGender
+}
+
+interface FieldTypeUserProfileCompany {
+    panNumber?: Nullable<number>,
+}
+
+interface FieldTypeUserProfile extends FieldTypeUserProfileCommon {
+    fullName: string,
+    customer?: FieldTypeUserProfileCustomer,
+    company?: FieldTypeUserProfileCompany
+}
+
+interface FieldTypeUser {
+    password: string,
+    email: string,
+    category: Category
+    accountStatus: UserAccountStatus,
+    profile: FieldTypeUserProfile,
+    image?: string,
+    isVerified: boolean
+}
+
+interface FieldTypeUserMain extends FieldTypeUser {
+    _id: string,
+    createdAt: Date,
+    modifiedAt: Date,
+    operation: UserOperations,
+    otpCode: string,
+    otpExpiry: Date,
 }
 
 interface FieldTypeRegister {
-    emailId: string,
-    fullName: string,
+    email: string,
+    category: Category
     password: string,
-    userType: UserType
+    profile: {
+        fullName: string,
+    }
 }
 
-interface FieldTypeForgotPassword {
-    emailId: string,
+interface FieldTypeResendOtp {
+    email: string,
+    operation: UserOperations
 }
 
 interface FieldTypeResetPassword {
-    emailId: string,
+    email: string,
     otpCode: string,
     password: string,
 }
@@ -31,41 +74,27 @@ interface FieldTypeChangePassword {
     newPassword: string,
 }
 
-interface FieldTypeVerifyUser {
-    emailId: string,
-    otpCode: string
+interface FieldTypeVerifyOtp {
+    email: string,
+    otpCode: string,
+    operation: UserOperations
 }
 
-interface FieldTypeUserDataPublic{
-    _id: string,
-    emailId: string,
-    fullName: string,
-    dob?: string,
-    bloodGroup?: BloodGroup,
-    gender?: string,
-    phoneNumber?: number,
-    address?: {
-        isPublic: boolean,
-        detail: string,
-    },
-    bio?:string,
-    imageUrl?: string,
-    activeForDonation?: boolean
-}
-
-interface FieldTypeUserData extends FieldTypeUserDataPublic{
-    isVerified: boolean,
-    userType: UserType
+interface FieldTypeAnswerSet {
+    displayOption: string,
+    value: string,
+    icon?: SvgIconName
 }
 
 export type {
   FieldTypeLogin,
   FieldTypeChangePassword,
-  FieldTypeForgotPassword,
+  FieldTypeResendOtp,
   FieldTypeResetPassword,
-  FieldTypeVerifyUser,
+  FieldTypeVerifyOtp,
   FieldTypeResendOtpCode,
-  FieldTypeUserData,
+  FieldTypeUserMain,
   FieldTypeRegister,
-  FieldTypeUserDataPublic
+  FieldTypeAnswerSet,
+  FieldTypeUserProfile
 }

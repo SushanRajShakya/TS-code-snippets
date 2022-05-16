@@ -1,28 +1,125 @@
 import { navigationDisplayNames } from './en'
-import {
-  AnimateContainerVariant,
-  ProfileEditNavTabValue,
-  ProfileEditTags,
-  ProfileMainNavTabValue,
-  UserRequestTabName
-} from './enum'
+import { companyRouteUrl, learnerRouteUrl, profileRouteUrl, publicRouteUrl, routeUrl } from '../Routing/Constant'
+import { AnimateContainerVariant, FallBackImage } from './enum'
 
-const company_details = {
-  title: 'Caduceus Application' ,
-  name: 'Caduceus Nepal',
-  shortForm: 'CN',
+const COMPANY_DETAILS = {
+  title: 'Learn To Drive App' ,
+  name: 'Learn To Drive Nepal',
+  shortForm: 'LTD',
   location: 'Kathmandu, Nepal',
   number: '+977-9812345678',
   logo: '',
   copyRight: 'Copyright 2021. All Rights reserved.',
 }
 
-const navigations = {
-  home: {
-    url: '/',
-    displayName: navigationDisplayNames.home,
+const NAVIGATIONS_COMPANY = [
+  {
+    url: routeUrl.DASHBOARD,
+    displayName: navigationDisplayNames.DASHBOARD,
+  },
+  {
+    url: routeUrl.VEHICLE,
+    displayName: navigationDisplayNames.VEHICLE,
+  },
+  {
+    url: routeUrl.PACKAGE,
+    displayName: navigationDisplayNames.PACKAGE,
+  },
+  {
+    url: companyRouteUrl.booking.LIST,
+    displayName: navigationDisplayNames.BOOKING,
   }
+]
+
+const NAVIGATIONS_LEARNER = [
+  {
+    url: learnerRouteUrl.booking.LIST,
+    displayName: navigationDisplayNames.BOOKING,
+  }
+]
+
+const NAVIGATIONS_PUBLIC = [
+  {
+    url: publicRouteUrl.package.LIST,
+    displayName: navigationDisplayNames.PACKAGE,
+  },
+  {
+    url: publicRouteUrl.company.LIST,
+    displayName: navigationDisplayNames.COMPANY,
+  }
+]
+
+const VEHICLE_TAB_LIST = [
+  { label: 'List', hrefUrl: companyRouteUrl.vehicle.LIST },
+  { label: 'Add', hrefUrl: companyRouteUrl.vehicle.ADD },
+]
+
+const PROFILE_TAB_LIST = [
+  { label: 'Details', hrefUrl: profileRouteUrl.DETAILS },
+  { label: 'Account Settings', hrefUrl: profileRouteUrl.ACCOUNT_SETTINGS },
+]
+
+const PACKAGE_TAB_LIST = (isUpdate = false) => [
+  { label: 'List', hrefUrl: companyRouteUrl.package.LIST },
+  !isUpdate
+    ? { label: 'New', hrefUrl: companyRouteUrl.package.ADD }
+    : { label: 'Update', hrefUrl: companyRouteUrl.package.UPDATE },
+]
+
+const fallBackImages = {
+  [FallBackImage.PACKAGE]: `http://localhost:${process.env.REACT_APP_PORT}/fallbackFiles/package.jpeg`,
+  [FallBackImage.VEHICLE]: `http://localhost:${process.env.REACT_APP_PORT}/fallbackFiles/vehicle.png`,
+  [FallBackImage.COMPANY]: `http://localhost:${process.env.REACT_APP_PORT}/fallbackFiles/company.jpg`,
+  [FallBackImage.USER]: `http://localhost:${process.env.REACT_APP_PORT}/fallbackFiles/user.png`,
 }
+
+const BRAND_LIST_BIKE = [
+  { value: 'aprilia', label: 'Aprilia' },
+  { value: 'bajaj', label: 'Bajaj' },
+  { value: 'benelli', label: 'Benelli' },
+  { value: 'bmw', label: 'BMW' },
+  { value: 'cfmoto', label: 'CF Moto' },
+  { value: 'crossfire', label: 'Crossfire' },
+  { value: 'ducati', label: 'Ducati' },
+  { value: 'haojue', label: 'Haojue' },
+  { value: 'hartford', label: 'Hartford' },
+  { value: 'hero', label: 'Hero' },
+  { value: 'honda', label: 'Honda' },
+  { value: 'husqvarna', label: 'Husqvarna' },
+  { value: 'italjet', label: 'Italjet' },
+  { value: 'jawa', label: 'Jawa' },
+  { value: 'kawasaki', label: 'Kawasaki' },
+  { value: 'ktm', label: 'KTM' },
+  { value: 'mahindra', label: 'Mahindra' },
+  { value: 'mvagusta', label: 'MV Agusta' },
+  { value: 'royalenfield', label: 'Royal Enfield' },
+  { value: 'runner', label: 'Runner' },
+  { value: 'suzuki', label: 'Suzuki' },
+  { value: 'tvs', label: 'TVS' },
+  { value: 'yamaha', label: 'Yamaha' },
+  { value: 'yatri', label: 'Yatri' },
+]
+
+const BRAND_LIST_CAR = [
+  { value: 'ford', label: 'Ford' },
+  { value: 'honda', label: 'Honda' },
+  { value: 'hyundai', label: 'Hyundai' },
+  { value: 'mahindra', label: 'Mahindra' },
+  { value: 'marutisuzuki', label: 'Maruti Suzuki' },
+  { value: 'mg', label: 'MG' },
+  { value: 'mitsubishi', label: 'Mitsubishi' },
+  { value: 'nissan', label: 'Nissan' },
+  { value: 'jeep', label: 'Jeep' },
+  { value: 'kia', label: 'KIA' },
+  { value: 'peugeot', label: 'Peugeot' },
+  { value: 'renault', label: 'Renault' },
+  { value: 'kkoda', label: 'Skoda' },
+  { value: 'ssangYong', label: 'SsangYong Motor' },
+  { value: 'tata', label: 'TATA' },
+  { value: 'toyota', label: 'Toyota' },
+  { value: 'volkswagen', label: 'Volkswagen' },
+]
+
 
 const animateContainerVariants = {
   toLeft: {
@@ -75,52 +172,13 @@ const animateContainerVariants = {
   },
 }
 
-const staticImageBaseUrl = '/static/images'
-
-const staticImagesUrl = {
-  tempGrayBox: `${staticImageBaseUrl}/tempGrayBoxAsImage.png`,
-  tempEventImage: `${staticImageBaseUrl}/tempEventImage.png`,
-  tempManImage: `${staticImageBaseUrl}/tempManTalking.jpeg`,
-  tempHostImage: `${staticImageBaseUrl}/tempHostImage.png`,
-  tempReviewImage: `${staticImageBaseUrl}/tempReviewImage.png`,
-  tempProfileImage: `${staticImageBaseUrl}/tempProfileImage.jpg`,
-  banner: [
-    `${staticImageBaseUrl}/banner/tempBannerOne.svg`,
-    `${staticImageBaseUrl}/banner/tempBannerTwo.svg`,
-    `${staticImageBaseUrl}/banner/tempBannerThree.svg`,
-    `${staticImageBaseUrl}/banner/tempBannerFour.svg`,
-    `${staticImageBaseUrl}/banner/tempBannerFive.png`,
-  ],
-  companyLogo: {
-    bottle: `${staticImageBaseUrl}/tempCompanyLogo_bottle.png`,
-    abc: `${staticImageBaseUrl}/tempCompanyLogo_ABC.png`,
-    abc2: `${staticImageBaseUrl}/tempCompanyLogo_ABC2.png`,
-  },
-  instituteLogo: {
-    stXaviers: `${staticImageBaseUrl}/tempInstituteLogo_stXaviers.png`,
-    abc: `${staticImageBaseUrl}/tempInstituteLogo_abc.png`,
-  },
-  areasOfInterest: `${staticImageBaseUrl}/tempAOIImage.png`,
-  fallbackImages: {
-    hospital: `${staticImageBaseUrl}/fallbackImages/hospitalFallBackImage.svg`,
-    ambulance: `${staticImageBaseUrl}/fallbackImages/ambulanceFallBackImage.svg`,
-    bloodBank: `${staticImageBaseUrl}/fallbackImages/bloodBankFallBackImage.svg`,
-    event: `${staticImageBaseUrl}/fallbackImages/eventFallBackImage.svg`,
-    disease: `${staticImageBaseUrl}/fallbackImages/diseaseFallBackImage.svg`,
-    doctor: `${staticImageBaseUrl}/fallbackImages/doctorFallBackImage.svg`,
-    department: `${staticImageBaseUrl}/fallbackImages/departmentFallBackImage.svg`,
-  }
-}
-
 const landingPageFooter = {
   contactInfo: {
     displayName: 'Contact Info',
     navs: [
-      { displayName: 'Caduceus', redirection: '/' },
-      { displayName: 'Doctors', redirection: '/doctors' },
-      { displayName: 'BloodBanks', redirection: '/bloodBanks' },
-      { displayName: 'Ambulance', redirection: '/ambulances' },
-      { displayName: 'Hospital', redirection: '/hospitals' },
+      { displayName: 'LTD', redirection: '/' },
+      { displayName: 'Packages', redirection: publicRouteUrl.package.LIST },
+      { displayName: 'Companies', redirection: publicRouteUrl.company.LIST },
     ]
   },
   about: {
@@ -141,66 +199,17 @@ const landingPageFooter = {
   }
 }
 
-const profilePageTabs = {
-  main: [
-    {
-      displayName: 'Details',
-      value: ProfileMainNavTabValue.DETAIL
-    },
-    {
-      displayName: 'Requests',
-      value: ProfileMainNavTabValue.REQUEST
-    }
-  ],
-  edit: [
-    {
-      displayName: 'Back',
-      value: 'back',
-      hrefUrl: '/profile'
-    },
-    {
-      displayName: 'Profile',
-      value: ProfileEditNavTabValue.PROFILE,
-      hrefUrl: '/profile/edit'
-    },
-    {
-      displayName: 'Account Settings',
-      value: ProfileEditNavTabValue.ACCOUNT_SETTINGS,
-      hrefUrl: '/profile/account-settings'
-    }
-  ]
+export {
+  NAVIGATIONS_COMPANY,
+  COMPANY_DETAILS,
+  VEHICLE_TAB_LIST,
+  BRAND_LIST_BIKE,
+  BRAND_LIST_CAR,
+  PACKAGE_TAB_LIST,
+  NAVIGATIONS_LEARNER,
+  NAVIGATIONS_PUBLIC,
+  PROFILE_TAB_LIST,
+  fallBackImages,
+  animateContainerVariants,
+  landingPageFooter
 }
-
-const userRequestTab:{ displayName: string, value:UserRequestTabName }[] = [
-  {
-    displayName: 'Blood - Yours',
-    value: UserRequestTabName.BLOOD_DONOR
-  },
-  {
-    displayName: 'Blood - To You',
-    value: UserRequestTabName.YOURSELF
-  },
-]
-
-
-const profileEditTabs:{ displayName: string, value: ProfileEditTags }[] = [
-  {
-    displayName: 'Basic Info',
-    value: ProfileEditTags.BASIC_INFO
-  },
-  {
-    displayName: 'Work Experience',
-    value: ProfileEditTags.WORK_EXPERIENCE
-  },
-  {
-    displayName: 'Education',
-    value: ProfileEditTags.EDUCATION
-  },
-  {
-    displayName: 'Department',
-    value: ProfileEditTags.DEPARTMENT
-  },
-]
-
-
-export { navigations, company_details, animateContainerVariants, staticImagesUrl, landingPageFooter, profilePageTabs, userRequestTab, profileEditTabs }

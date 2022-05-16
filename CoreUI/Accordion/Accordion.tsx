@@ -23,7 +23,7 @@ export const Accordion: FC<AccordionProps> = props => {
   const contentRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const handleToggle = index => {
+  const handleToggle = (index: number) => {
     const contentHeight = contentRef.current?.clientHeight
     toggleAccordion(index)
     containerRef.current?.style.setProperty('height', `${100 + (contentHeight && !isSelected ? contentHeight : 0)}px`)
@@ -41,12 +41,12 @@ export const Accordion: FC<AccordionProps> = props => {
 
   return (
     <div ref={containerRef} className={styles.accordionContainer}>
-      <FlexContainer justify='spaceBetween' classList={styles.accordionTitle} onClick={() => { handleToggle(index) }} >
-        <Typography variant='h4' weight='bold'> {title} </Typography>
+      <FlexContainer justify="spaceBetween" classList={styles.accordionTitle} onClick={() => { handleToggle(index) }} >
+        <Typography variant="h4" weight="bold"> {title} </Typography>
         <div className={classNames(styles.iconWrapper, isSelected ? styles.expand : styles.shrink)}><SvgIcons iconName={SvgIconName.ANGLE_DOWN} /></div>
       </FlexContainer>
       <div ref={contentRef} className={styles.accordionContent} >
-        <Typography variant='h6'>{content + content + content + content}</Typography>
+        <Typography variant="h6">{content + content + content + content}</Typography>
       </div>
     </div>
   )

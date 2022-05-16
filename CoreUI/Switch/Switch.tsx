@@ -21,7 +21,7 @@ interface IconProp{
 export const Switch: FC<Props> = ({ checked, label, toggleHandler, disabled = false, icons = false }) => (
   <div>
     <FlexContainer>
-      {label ? <span className='label-text'>{label} :</span> : null}
+      {label ? <span className="label-text">{label} :</span> : null}
       <Toggle icons={icons} checked={checked} onChange={toggleHandler} disabled={disabled}/>
     </FlexContainer>
   </div>

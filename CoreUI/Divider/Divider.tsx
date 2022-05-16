@@ -3,10 +3,10 @@ import React, { FC } from 'react'
 import styles from './Divider.module.scss'
 
 interface Props {
-  text?: string
+  text?: boolean
 }
 
-export const Divider: FC<Props> = ({ text }) =>
+export const Divider: FC<Props> = ({ text = false }) =>
   !text ? (
     <div className={styles.divider}>
       <hr />

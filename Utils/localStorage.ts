@@ -1,27 +1,25 @@
 import { GenericObject, Nullable } from './Types'
 
-export enum LocalStorageKeys {
+enum LocalStorageKeys {
   RESET_STATE = 'rsi',
   LOGIN_FIELD = 'lfs',
   CONFIRM_USER = 'cfu',
   OTP_ACTIVATE_TIME = 'oat',
   REGISTER_STATE = 'reg',
-  TOKEN_1='uni',
-  TOKEN_2='cov',
-  TOKEN_3='lod',
+  TOKEN='oto',
   EXPIRY='uep',
   USER_ID='uri',
 }
 
-export const updateStorage = (storageKey: LocalStorageKeys, value: GenericObject) => {
+const updateStorage = <T>(storageKey: LocalStorageKeys, value: T | GenericObject) => {
   window.localStorage && window.localStorage.setItem(storageKey, JSON.stringify(value))
 }
 
-export const removeStorage = (storageKey: LocalStorageKeys) => {
+const removeStorage = (storageKey: LocalStorageKeys) => {
   window.localStorage && window.localStorage.removeItem((storageKey))
 }
 
-export const getFromStorage = <T>(storageKey: LocalStorageKeys):Nullable<T> => {
+const getFromStorage = <T>(storageKey: LocalStorageKeys):Nullable<T> => {
   let item = null
   try {
     item = window.localStorage ? JSON.parse(window.localStorage.getItem(storageKey) || '') : null
@@ -29,4 +27,16 @@ export const getFromStorage = <T>(storageKey: LocalStorageKeys):Nullable<T> => {
   } catch {
     return item
   }
+}
+
+const clearStorage = () => {
+  window.localStorage && window.localStorage.clear()
+}
+
+export {
+  clearStorage,
+  getFromStorage,
+  updateStorage,
+  removeStorage,
+  LocalStorageKeys
 }

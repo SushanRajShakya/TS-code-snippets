@@ -1,10 +1,11 @@
-import { LocalStorageKeys } from './localStorage'
+import { LocalStorageKeys, clearStorage, getFromStorage } from './localStorage'
 import { AxiosError } from 'axios'
+import { FieldTypeLSTokenObject } from './Types'
 
 const loginExpired = (err: AxiosError): boolean => {
   if (err.response) {
     if (err.response.status === 440) {
-      localStorage.clear()
+      clearStorage()
       document.location.reload()
       return true
     } else {
@@ -18,7 +19,7 @@ const loginExpired = (err: AxiosError): boolean => {
 const invalidUser = (err: AxiosError): boolean => {
   if (err.response) {
     if (err.response.status === 401) {
-      localStorage.clear()
+      clearStorage()
       document.location.reload()
       return true
     } else {
@@ -30,12 +31,11 @@ const invalidUser = (err: AxiosError): boolean => {
 }
 
 const validateLogin = (): boolean => {
+  const token = getFromStorage<FieldTypeLSTokenObject>(LocalStorageKeys.TOKEN)
   return !!(
-    localStorage.getItem(LocalStorageKeys.TOKEN_1) &&
-    localStorage.getItem(LocalStorageKeys.TOKEN_2) &&
-    localStorage.getItem(LocalStorageKeys.TOKEN_3) &&
-    localStorage.getItem(LocalStorageKeys.EXPIRY) &&
-    localStorage.getItem(LocalStorageKeys.USER_ID)
+    token && token.uno && token.duo && token.tres &&
+    getFromStorage(LocalStorageKeys.EXPIRY) &&
+    getFromStorage(LocalStorageKeys.USER_ID)
   )
 }
 

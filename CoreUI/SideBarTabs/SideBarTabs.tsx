@@ -18,7 +18,7 @@ interface SideBarTabsProps {
 
 export const SideBarTabs:FC<SideBarTabsProps> = ({ tabList, activeValue }) => {
   return(
-    <FlexContainer direction='col' classList={styles.profileUserNavWrapper} align='start'>
+    <FlexContainer direction="col" classList={styles.profileUserNavWrapper} align="start">
       {tabList.map(((ppt, i) =>
         <div
           key={i}

@@ -1,41 +1,50 @@
-import React, { FC } from 'react'
+import React, { FC, createRef, useEffect } from 'react'
 
-import { Typography } from 'Components'
+import { Button, FlexContainer, Typography } from 'Components'
 
 import styles from './Modal.module.scss'
+import { FunctionWithNoParam } from '../../../Utils/Types'
 
 interface ModalProps {
-    title: string,
-    content: string,
+    title?: string,
     cancelButtonTitle: string,
     acceptButtonTitle: string,
-    toggleModal: () => void
+    onClose: FunctionWithNoParam,
+    onAccept: FunctionWithNoParam
 }
 
 export const Modal: FC<ModalProps> = props => {
-  const { title, content, cancelButtonTitle, acceptButtonTitle, toggleModal } = props
+    
+  const { title, cancelButtonTitle, acceptButtonTitle, onClose, children, onAccept } = props
+    
+  const backgroundRef = createRef<HTMLDivElement>()
+    
+  const closeModal:EventListener = e => {
+    backgroundRef.current?.isEqualNode(e.target as Node) && onClose()
+  }
+    
+  useEffect(() => {
+    backgroundRef.current?.addEventListener('click', closeModal)
+    return () => document.removeEventListener('click', closeModal)
+  }, [closeModal, backgroundRef])
+    
+    
   return (
-    <div className={styles.modalBackground}>
-      <div className={styles.modalContainer}>
-        <div className={styles.modalCloseBar}>
-          <button onClick={toggleModal}>X</button>
-        </div>
-        <div className={styles.modalTitle}>
-          <Typography variant='h2'>
-            {title}
-          </Typography>
-        </div>
-        <div className={styles.modalBody}>
-          <Typography variant='p'>
-            {content}
-          </Typography>
-        </div>
-        <div className={styles.modalFooter}>
-          <button className={styles.declineButton} onClick={toggleModal}>{cancelButtonTitle}</button>
-          <button className={styles.primaryButton}>{acceptButtonTitle}</button>
-        </div>
-      </div>
-    </div>
+    <FlexContainer ref={backgroundRef} classList={styles.modalBackground}>
+      <FlexContainer direction="col" classList={styles.modalContainer}>
+        <FlexContainer justify="center" fill classList={styles.modalHeader}>
+          <button onClick={onClose} className={styles.modalCloseButton}>X</button>
+          {title && <Typography variant="h4" classList={styles.modalTitle}>{title}</Typography>}
+        </FlexContainer>
+        <FlexContainer justify="start" fill classList={styles.modalBody}>
+          {children}
+        </FlexContainer>
+        <FlexContainer justify="center" fill classList={styles.modalFooter}>
+          <Button variant="secondary" onClick={onClose}>{cancelButtonTitle}</Button>
+          <Button onClick={onAccept}>{acceptButtonTitle}</Button>
+        </FlexContainer>
+      </FlexContainer>
+    </FlexContainer>
   )
 }
 

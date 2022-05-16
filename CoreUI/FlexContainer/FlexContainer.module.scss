@@ -20,6 +20,14 @@
     flex-direction: column;
   }
 
+  &.rowReverse {
+    flex-direction: row-reverse;
+  }
+
+  &.colReverse {
+    flex-direction: column-reverse;
+  }
+
   &.end {
     justify-content: flex-end;
   }

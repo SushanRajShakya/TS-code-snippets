@@ -1,12 +1,18 @@
 @import "src/Components/Styles/variables";
 
 .avatarWrapper{
-  background: $primary-dark;
-  height: 100%;
-  width: 100%;
+  background: $primary-color;
+  height: 50px;
+  width: 50px;
   border-radius: 500px;
+  overflow: hidden;
+  border: 1px solid $primary-color;
+  box-shadow: 0 0 5px 0 $gray-700;
   .avatarText{
     color: $white;
     letter-spacing: 1px;
+  }
+  img{
+    width: 100%;
   }
 }
